@@ -9,6 +9,12 @@ export const getDashboardStats = async (req: Request, res: Response) => {
     const totalProducts = await Product.countDocuments();
     const totalOrders = await Order.countDocuments();
 
+    const recentOrders = await Order.find()
+      .sort({ orderDate: -1 })
+      .limit(10)
+      .populate("userId", "name")
+      .select("_id totalAmount orderDate userId");
+
     const revenueStats = await Order.aggregate([
       {
         $group: {
@@ -108,6 +114,7 @@ export const getDashboardStats = async (req: Request, res: Response) => {
       productStatusBreakdown,
       recentOrdersCount,
       last7DaysRevenue,
+      recentOrders,
     });
   } catch (error: any) {
     res.status(500).json({ error: error.message });

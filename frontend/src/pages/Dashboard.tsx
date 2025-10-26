@@ -13,6 +13,16 @@ interface ProductStatus {
   count: number;
 }
 
+interface RecentOrder {
+  _id: string;
+  userId: {
+    _id: string;
+    name: string;
+  };
+  totalAmount: number;
+  orderDate: string;
+}
+
 interface DashboardStats {
   totalUsers: number;
   totalProducts: number;
@@ -24,6 +34,7 @@ interface DashboardStats {
   productStatusBreakdown: ProductStatus[];
   recentOrdersCount: number;
   last7DaysRevenue: number;
+  recentOrders: RecentOrder[];
 }
 
 export default function Dashboard() {
@@ -32,6 +43,10 @@ export default function Dashboard() {
   useEffect(() => {
     api.getDashboard().then(setStats);
   }, []);
+
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleString();
+  };
 
   if (!stats) return <div>Loading...</div>;
 
@@ -109,6 +124,34 @@ export default function Dashboard() {
             <p className="stat-value">{status.count}</p>
           </div>
         ))}
+      </div>
+
+      <h2>Recent Orders</h2>
+      <div className="table-container">
+        {stats.recentOrders && stats.recentOrders.length > 0 ? (
+          <table>
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>User</th>
+                <th>Total Amount</th>
+                <th>Order Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              {stats.recentOrders.map((order) => (
+                <tr key={order._id}>
+                  <td>{order._id}</td>
+                  <td>{order.userId.name}</td>
+                  <td>₹{order.totalAmount.toFixed(2)}</td>
+                  <td>{formatDate(order.orderDate)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <p>No recent orders</p>
+        )}
       </div>
     </div>
   );
