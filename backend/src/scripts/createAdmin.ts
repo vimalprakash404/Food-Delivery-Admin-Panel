@@ -32,7 +32,6 @@ const createAdmin = async () => {
     console.log("✅ Admin user created successfully!");
     console.log("Email:", email);
     console.log("Password:", password);
-    console.log("\n⚠️  Please change the password after first login!");
 
     process.exit(0);
   } catch (error) {
