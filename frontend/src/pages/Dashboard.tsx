@@ -55,7 +55,7 @@ export default function Dashboard() {
         </div>
         <div className="stat-card">
           <h3>Total Revenue</h3>
-          <p className="stat-value">${stats.totalRevenue.toFixed(2)}</p>
+          <p className="stat-value">₹{stats.totalRevenue.toFixed(2)}</p>
         </div>
       </div>
 
@@ -63,7 +63,7 @@ export default function Dashboard() {
       <div className="stats-grid">
         <div className="stat-card">
           <h3>Average Order Value</h3>
-          <p className="stat-value">${stats.averageOrderValue.toFixed(2)}</p>
+          <p className="stat-value">₹{stats.averageOrderValue.toFixed(2)}</p>
         </div>
         <div className="stat-card">
           <h3>Total Items Sold</h3>
@@ -75,7 +75,7 @@ export default function Dashboard() {
         </div>
         <div className="stat-card">
           <h3>Revenue (Last 7 Days)</h3>
-          <p className="stat-value">${stats.last7DaysRevenue.toFixed(2)}</p>
+          <p className="stat-value">₹{stats.last7DaysRevenue.toFixed(2)}</p>
         </div>
       </div>
 
@@ -94,7 +94,7 @@ export default function Dashboard() {
               <tr key={product._id}>
                 <td>{product.name}</td>
                 <td>{product.totalQuantity}</td>
-                <td>${product.totalRevenue.toFixed(2)}</td>
+                <td>₹{product.totalRevenue.toFixed(2)}</td>
               </tr>
             ))}
           </tbody>

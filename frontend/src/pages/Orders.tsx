@@ -99,7 +99,7 @@ export default function Orders() {
           <table>
             <thead>
               <tr>
-                <th>Order ID</th>
+              
                 <th>User</th>
                 <th>Items</th>
                 <th>Total Amount</th>
@@ -109,7 +109,7 @@ export default function Orders() {
             <tbody>
               {orders.map((order) => (
                 <tr key={order._id}>
-                  <td>{order._id}</td>
+               
                   <td>{order.userId.name}</td>
                   <td>
                     {order.items.map((item, idx) => {
@@ -123,7 +123,7 @@ export default function Orders() {
                       );
                     })}
                   </td>
-                  <td>${order.totalAmount.toFixed(2)}</td>
+                  <td>₹{order.totalAmount.toFixed(2)}</td>
                   <td>{formatDate(order.orderDate)}</td>
                 </tr>
               ))}
@@ -156,7 +156,7 @@ export default function Orders() {
               <option value="">Select Product</option>
               {products.map((product) => (
                 <option key={product._id} value={product._id}>
-                  {product.name} - ${product.price.toFixed(2)}
+                  {product.name} - ₹{product.price.toFixed(2)}
                 </option>
               ))}
             </select>
@@ -192,8 +192,8 @@ export default function Orders() {
                       <tr key={index}>
                         <td>{product?.name}</td>
                         <td>{item.quantity}</td>
-                        <td>${item.price.toFixed(2)}</td>
-                        <td>${(item.price * item.quantity).toFixed(2)}</td>
+                        <td>₹{item.price.toFixed(2)}</td>
+                        <td>₹{(item.price * item.quantity).toFixed(2)}</td>
                         <td>
                           <button type="button" onClick={() => removeItem(index)}>
                             Remove
@@ -205,7 +205,7 @@ export default function Orders() {
                 </tbody>
               </table>
               <div className="order-total">
-                <strong>Total Amount: ${calculateTotal().toFixed(2)}</strong>
+                <strong>Total Amount: ₹{calculateTotal().toFixed(2)}</strong>
               </div>
             </div>
           )}

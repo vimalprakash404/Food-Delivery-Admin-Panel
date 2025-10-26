@@ -141,7 +141,7 @@ export default function Products() {
               <tr key={product._id}>
                 <td>{product.name}</td>
                 <td>{product.categoryId.name}</td>
-                <td>${product.price.toFixed(2)}</td>
+                <td>₹{product.price.toFixed(2)}</td>
                 <td>{product.status}</td>
                 <td>
                   <button onClick={() => handleEdit(product)}>Edit</button>
