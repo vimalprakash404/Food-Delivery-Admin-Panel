@@ -2,7 +2,7 @@
 
 A comprehensive full-stack admin panel for managing food delivery operations with JWT authentication, built with React.js, Node.js (Express), and MongoDB.
 
-## 🚀 Features
+## Features
 
 ### Backend (Node.js + Express + MongoDB)
 - ✅ RESTful API with complete CRUD operations
@@ -27,7 +27,7 @@ A comprehensive full-stack admin panel for managing food delivery operations wit
   - Product Management
   - Order Creation & Management
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Layer | Technology |
 |-------|-----------|
@@ -36,7 +36,7 @@ A comprehensive full-stack admin panel for managing food delivery operations wit
 | **Database** | MongoDB with Mongoose ODM |
 | **Build Tools** | Vite, ts-node-dev |
 
-## 📋 Prerequisites
+## Prerequisites
 
 Before running this application, ensure you have:
 
@@ -44,7 +44,7 @@ Before running this application, ensure you have:
 - **MongoDB** 
 - **npm** or **yarn** package manager
 
-## 🔧 Installation
+## Installation
 
 ### 1. Clone the Repository
 
@@ -229,44 +229,44 @@ Test all API endpoints using our Postman collection:
 ### Authentication
 | Method | Endpoint | Description | Auth Required |
 |--------|----------|-------------|---------------|
-| POST | `/api/auth/register` | Register new admin | ❌ |
-| POST | `/api/auth/login` | Login with credentials | ❌ |
-| GET | `/api/auth/me` | Get current user | ✅ |
+| POST | `/api/auth/register` | Register new admin | false |
+| POST | `/api/auth/login` | Login with credentials | false |
+| GET | `/api/auth/me` | Get current user | true |
 
 ### Users
 | Method | Endpoint | Description | Auth Required |
 |--------|----------|-------------|---------------|
-| GET | `/api/users` | List all users | ✅ |
-| POST | `/api/users` | Create new user | ✅ |
-| PUT | `/api/users/:id` | Update user | ✅ |
-| DELETE | `/api/users/:id` | Delete user | ✅ |
+| GET | `/api/users` | List all users | true |
+| POST | `/api/users` | Create new user | true |
+| PUT | `/api/users/:id` | Update user | true |
+| DELETE | `/api/users/:id` | Delete user | true |
 
 ### Categories
 | Method | Endpoint | Description | Auth Required |
 |--------|----------|-------------|---------------|
-| GET | `/api/categories` | List all categories | ✅ |
-| POST | `/api/categories` | Create category | ✅ |
-| PUT | `/api/categories/:id` | Update category | ✅ |
-| DELETE | `/api/categories/:id` | Delete category | ✅ |
+| GET | `/api/categories` | List all categories | true |
+| POST | `/api/categories` | Create category | true |
+| PUT | `/api/categories/:id` | Update category | true |
+| DELETE | `/api/categories/:id` | Delete category | true |
 
 ### Products
 | Method | Endpoint | Description | Auth Required |
 |--------|----------|-------------|---------------|
-| GET | `/api/products` | List all products | ✅ |
-| POST | `/api/products` | Create product | ✅ |
-| PUT | `/api/products/:id` | Update product | ✅ |
-| DELETE | `/api/products/:id` | Delete product | ✅ |
+| GET | `/api/products` | List all products | true |
+| POST | `/api/products` | Create product | true |
+| PUT | `/api/products/:id` | Update product | true |
+| DELETE | `/api/products/:id` | Delete product | true |
 
 ### Orders
 | Method | Endpoint | Description | Auth Required |
 |--------|----------|-------------|---------------|
-| GET | `/api/orders` | List all orders | ✅ |
-| POST | `/api/orders` | Create order | ✅ |
+| GET | `/api/orders` | List all orders | true |
+| POST | `/api/orders` | Create order | true |
 
 ### Dashboard
 | Method | Endpoint | Description | Auth Required |
 |--------|----------|-------------|---------------|
-| GET | `/api/dashboard` | Get statistics | ✅ |
+| GET | `/api/dashboard` | Get statistics | true |
 
 ## 📊 Database Schema
 
@@ -536,8 +536,8 @@ npx tsc --version
 
 | Variable | Description | Default | Required |
 |----------|-------------|---------|----------|
-| `MONGO_URI` | MongoDB connection string | `mongodb://localhost:27017/food-delivery-admin` | ✅ |
-| `JWT_SECRET` | Secret for JWT signing | - | ✅ |
+| `MONGO_URI` | MongoDB connection string | `mongodb://localhost:27017/food-delivery-admin` | true |
+| `JWT_SECRET` | Secret for JWT signing | - | true |
 | `PORT` | Backend server port | `5000` | ❌ |
 | `ADMIN_NAME` | Admin user name | `Admin` | ⚠️ |
 | `ADMIN_EMAIL` | Admin email | `admin@example.com` | ⚠️ |
