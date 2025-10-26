@@ -41,7 +41,7 @@ A comprehensive full-stack admin panel for managing food delivery operations wit
 Before running this application, ensure you have:
 
 - **Node.js** v18 or higher
-- **MongoDB** running locally on port 27017
+- **MongoDB** 
 - **npm** or **yarn** package manager
 
 ## 🔧 Installation
