@@ -13,22 +13,36 @@ interface Product {
 }
 
 interface OrderItem {
-  productId: string;
+  productId: string | Product;
   quantity: number;
   price: number;
+}
+
+interface Order {
+  _id: string;
+  userId: User;
+  items: OrderItem[];
+  totalAmount: number;
+  orderDate: string;
 }
 
 export default function Orders() {
   const [users, setUsers] = useState<User[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
+  const [orders, setOrders] = useState<Order[]>([]);
   const [userId, setUserId] = useState("");
   const [items, setItems] = useState<OrderItem[]>([]);
   const [selectedProduct, setSelectedProduct] = useState("");
   const [quantity, setQuantity] = useState(1);
 
+  const loadOrders = () => {
+    api.getOrders().then(setOrders);
+  };
+
   useEffect(() => {
     api.getUsers().then(setUsers);
     api.getProducts().then(setProducts);
+    loadOrders();
   }, []);
 
   const addItem = () => {
@@ -68,15 +82,61 @@ export default function Orders() {
     alert("Order created successfully!");
     setUserId("");
     setItems([]);
+    loadOrders();
+  };
+
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleString();
   };
 
   return (
     <div>
-      <h1>Create Order</h1>
+      <h1>Orders</h1>
+
+      <div style={{ marginBottom: "2rem" }}>
+        <h2>All Orders</h2>
+        {orders.length > 0 ? (
+          <table>
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>User</th>
+                <th>Items</th>
+                <th>Total Amount</th>
+                <th>Order Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              {orders.map((order) => (
+                <tr key={order._id}>
+                  <td>{order._id}</td>
+                  <td>{order.userId.name}</td>
+                  <td>
+                    {order.items.map((item, idx) => {
+                      const productName = typeof item.productId === 'object'
+                        ? item.productId.name
+                        : 'Unknown';
+                      return (
+                        <div key={idx}>
+                          {productName} x{item.quantity}
+                        </div>
+                      );
+                    })}
+                  </td>
+                  <td>${order.totalAmount.toFixed(2)}</td>
+                  <td>{formatDate(order.orderDate)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <p>No orders yet.</p>
+        )}
+      </div>
+
+      <h2>Create New Order</h2>
 
       <form onSubmit={handleSubmit} className="form-container">
-        <h2>Order Details</h2>
-
         <select value={userId} onChange={(e) => setUserId(e.target.value)} required>
           <option value="">Select User</option>
           {users.map((user) => (
