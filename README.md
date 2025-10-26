@@ -1,44 +1,52 @@
 # Food Delivery Admin Panel
 
-A full-stack admin panel for managing food delivery operations built with React.js, Node.js (Express), and MongoDB.
+A comprehensive full-stack admin panel for managing food delivery operations with JWT authentication, built with React.js, Node.js (Express), and MongoDB.
 
-## Features
+## 🚀 Features
 
 ### Backend (Node.js + Express + MongoDB)
-- RESTful API with complete CRUD operations
-- MongoDB with Mongoose ODM
-- Aggregation pipeline for dashboard analytics
-- Collections: Users, Categories, Products, Orders
+- ✅ RESTful API with complete CRUD operations
+- ✅ MongoDB with Mongoose ODM
+- ✅ JWT-based authentication system
+- ✅ Password hashing with bcrypt
+- ✅ Protected routes with authentication middleware
+- ✅ Aggregation pipeline for advanced dashboard analytics
+- ✅ Collections: Users, Categories, Products, Orders
 
 ### Frontend (React.js + Vite)
-- Modern React with TypeScript
-- React Router for navigation
-- Responsive design with clean UI
-- Pages:
-  - Dashboard with statistics
+- ✅ Modern React 19 with TypeScript
+- ✅ React Router for navigation
+- ✅ Context API for authentication state management
+- ✅ Protected routes requiring authentication
+- ✅ Responsive design with clean, modern UI
+- ✅ Comprehensive pages:
+  - Login (Authentication)
+  - Dashboard with real-time statistics
   - User Management
   - Category Management
   - Product Management
-  - Order Creation
+  - Order Creation & Management
 
-## Tech Stack
+## 🛠️ Tech Stack
 
-- **Frontend**: React 19, TypeScript, Vite, React Router
-- **Backend**: Node.js, Express 5, TypeScript
-- **Database**: MongoDB with Mongoose
-- **Build Tools**: Vite, ts-node-dev
+| Layer | Technology |
+|-------|-----------|
+| **Frontend** | React 19, TypeScript, Vite, React Router, Context API |
+| **Backend** | Node.js, Express 5, TypeScript, JWT, bcrypt |
+| **Database** | MongoDB with Mongoose ODM |
+| **Build Tools** | Vite, ts-node-dev |
 
-## Prerequisites
+## 📋 Prerequisites
 
-Before running this application, make sure you have:
+Before running this application, ensure you have:
 
-- Node.js (v18 or higher)
-- MongoDB (running locally on port 27017)
-- npm or yarn package manager
+- **Node.js** v18 or higher
+- **MongoDB** running locally on port 27017
+- **npm** or **yarn** package manager
 
-## Installation
+## 🔧 Installation
 
-### 1. Clone the repository
+### 1. Clone the Repository
 
 ```bash
 git clone <repository-url>
@@ -59,263 +67,481 @@ cd ../frontend
 npm install
 ```
 
-### 4. Set up MongoDB
+### 4. Configure Environment Variables
 
-Make sure MongoDB is running locally. The application will connect to:
-```
-mongodb://localhost:27017/food-delivery-admin
+Create a `.env` file in the **root directory**:
+
+```env
+# MongoDB Configuration
+MONGO_URI=mongodb://localhost:27017/food-delivery-admin
+
+# JWT Secret (Change in production!)
+JWT_SECRET=your-secret-key-change-this-in-production
+
+# Server Port
+PORT=5000
+
+# Admin User Credentials (for createAdmin script)
+ADMIN_NAME=Admin
+ADMIN_EMAIL=admin@example.com
+ADMIN_MOBILE=1234567890
+ADMIN_PASSWORD=admin123
 ```
 
-You can start MongoDB with:
+⚠️ **Important**: Change the `JWT_SECRET` to a strong, unique value in production!
+
+### 5. Start MongoDB
+
+Ensure MongoDB is running:
+
 ```bash
 mongod
 ```
 
-## Running the Application
+Or if using MongoDB as a service:
 
-### Start the Backend Server
+```bash
+# macOS
+brew services start mongodb-community
+
+# Linux
+sudo systemctl start mongod
+
+# Windows
+net start MongoDB
+```
+
+### 6. Create Admin User
+
+Create an admin user before first run:
+
+```bash
+cd backend
+npm run create-admin
+```
+
+You should see:
+```
+✅ Admin user created successfully!
+Email: admin@example.com
+Password: admin123
+```
+
+## 🚀 Running the Application
+
+### Start Backend Server
 
 ```bash
 cd backend
 npm run dev
 ```
 
-The backend server will run on `http://localhost:3000`
+Expected output:
+```
+🚀 Server running on port 5000
+✅ MongoDB connected
+```
 
-### Start the Frontend Development Server
+### Start Frontend Development Server
 
-In a new terminal:
+In a **new terminal**:
 
 ```bash
 cd frontend
 npm run dev
 ```
 
-The frontend will run on `http://localhost:5173`
+Expected output:
+```
+VITE v7.x.x  ready in xxx ms
 
-## API Endpoints
+➜  Local:   http://localhost:5173/
+```
+
+## 📖 Usage Guide
+
+### 1. Login to Admin Panel
+
+1. Navigate to `http://localhost:5173`
+2. You'll be redirected to the login page
+3. Enter admin credentials:
+   - **Email**: `admin@example.com`
+   - **Password**: `admin123`
+4. Click "Login"
+
+### 2. Dashboard
+
+View comprehensive statistics:
+- **Overview**: Total users, products, orders, and revenue
+- **Order Insights**: Average order value, items sold, recent orders
+- **Top Products**: Best-selling products by quantity and revenue
+- **Product Status**: Breakdown by active/inactive status
+- **Recent Orders**: Latest 10 orders with details
+
+### 3. User Management
+
+- **Create**: Add new customers (name, email, mobile)
+- **Update**: Edit existing user information
+- **Delete**: Remove users from the system
+- **View**: See all users in a sortable table
+
+### 4. Category Management
+
+- **Create**: Add product categories with descriptions
+- **Update**: Edit category details
+- **Delete**: Remove categories (ensure no products use it)
+- **View**: Display all categories
+
+### 5. Product Management
+
+- **Create**: Add products with:
+  - Name
+  - Category selection
+  - Price
+  - Status (Active/Inactive)
+- **Update**: Modify product details
+- **Delete**: Remove products
+- **View**: See all products with category info
+
+### 6. Order Management
+
+- **Create Orders**:
+  1. Select a customer
+  2. Add products with quantities
+  3. Review calculated total
+  4. Submit order
+- **View Orders**: See all orders with:
+  - Customer details
+  - Order items
+  - Total amount
+  - Order date/time
+
+## 🔌 API Endpoints
+
+### 📮 Postman Collection
+
+Test all API endpoints using our Postman collection:
+
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://www.postman.com/vimalprakashpk1999-2600812/food-delivery-admin-panel/collection/d2bhljj/backend-api-collection?action=share&creator=48945159)
+
+**Direct Link**: [Food Delivery Admin Panel API Collection](https://www.postman.com/vimalprakashpk1999-2600812/food-delivery-admin-panel/collection/d2bhljj/backend-api-collection?action=share&creator=48945159)
+
+### Authentication
+| Method | Endpoint | Description | Auth Required |
+|--------|----------|-------------|---------------|
+| POST | `/api/auth/register` | Register new admin | ❌ |
+| POST | `/api/auth/login` | Login with credentials | ❌ |
+| GET | `/api/auth/me` | Get current user | ✅ |
 
 ### Users
-- `GET /api/users` - List all users
-- `POST /api/users` - Create a new user
-- `PUT /api/users/:id` - Update a user
-- `DELETE /api/users/:id` - Delete a user
+| Method | Endpoint | Description | Auth Required |
+|--------|----------|-------------|---------------|
+| GET | `/api/users` | List all users | ✅ |
+| POST | `/api/users` | Create new user | ✅ |
+| PUT | `/api/users/:id` | Update user | ✅ |
+| DELETE | `/api/users/:id` | Delete user | ✅ |
 
 ### Categories
-- `GET /api/categories` - List all categories
-- `POST /api/categories` - Create a new category
-- `PUT /api/categories/:id` - Update a category
-- `DELETE /api/categories/:id` - Delete a category
+| Method | Endpoint | Description | Auth Required |
+|--------|----------|-------------|---------------|
+| GET | `/api/categories` | List all categories | ✅ |
+| POST | `/api/categories` | Create category | ✅ |
+| PUT | `/api/categories/:id` | Update category | ✅ |
+| DELETE | `/api/categories/:id` | Delete category | ✅ |
 
 ### Products
-- `GET /api/products` - List all products (with populated category)
-- `POST /api/products` - Create a new product
-- `PUT /api/products/:id` - Update a product
-- `DELETE /api/products/:id` - Delete a product
+| Method | Endpoint | Description | Auth Required |
+|--------|----------|-------------|---------------|
+| GET | `/api/products` | List all products | ✅ |
+| POST | `/api/products` | Create product | ✅ |
+| PUT | `/api/products/:id` | Update product | ✅ |
+| DELETE | `/api/products/:id` | Delete product | ✅ |
 
 ### Orders
-- `POST /api/orders` - Create a new order
-- `GET /api/orders` - List all orders
+| Method | Endpoint | Description | Auth Required |
+|--------|----------|-------------|---------------|
+| GET | `/api/orders` | List all orders | ✅ |
+| POST | `/api/orders` | Create order | ✅ |
 
 ### Dashboard
-- `GET /api/dashboard` - Get dashboard statistics (aggregated data)
+| Method | Endpoint | Description | Auth Required |
+|--------|----------|-------------|---------------|
+| GET | `/api/dashboard` | Get statistics | ✅ |
 
-## Database Schema
+## 📊 Database Schema
 
 ### Users Collection
 ```javascript
 {
-  name: String (required),
-  email: String (required, unique),
-  mobile: String (required),
-  timestamps: true
+  name: String,           // Required
+  email: String,          // Required, Unique
+  mobile: String,         // Required
+  password: String,       // Optional (hashed with bcrypt)
+  role: String,           // Default: "user"
+  createdAt: Date,        // Auto-generated
+  updatedAt: Date         // Auto-generated
 }
 ```
 
 ### Categories Collection
 ```javascript
 {
-  name: String (required),
-  description: String (required),
-  timestamps: true
+  name: String,           // Required
+  description: String,    // Required
+  createdAt: Date,        // Auto-generated
+  updatedAt: Date         // Auto-generated
 }
 ```
 
 ### Products Collection
 ```javascript
 {
-  name: String (required),
-  categoryId: ObjectId (required, ref: Category),
-  price: Number (required),
-  status: String (required, default: "active"),
-  timestamps: true
+  name: String,           // Required
+  categoryId: ObjectId,   // Required, Reference to Category
+  price: Number,          // Required
+  status: String,         // Required, Default: "active"
+  createdAt: Date,        // Auto-generated
+  updatedAt: Date         // Auto-generated
 }
 ```
 
 ### Orders Collection
 ```javascript
 {
-  userId: ObjectId (required, ref: User),
+  userId: ObjectId,       // Required, Reference to User
   items: [{
-    productId: ObjectId (required, ref: Product),
-    quantity: Number (required),
-    price: Number (required)
+    productId: ObjectId,  // Required, Reference to Product
+    quantity: Number,     // Required
+    price: Number         // Required
   }],
-  totalAmount: Number (required),
-  orderDate: Date (default: Date.now),
-  timestamps: true
+  totalAmount: Number,    // Required
+  orderDate: Date,        // Default: Date.now
+  createdAt: Date,        // Auto-generated
+  updatedAt: Date         // Auto-generated
 }
 ```
 
-## Dashboard Aggregation
+## 🔐 Authentication Flow
 
-The dashboard uses MongoDB aggregation to calculate:
-- Total number of users
-- Total number of products
-- Total number of orders
-- Total revenue (sum of all order amounts)
+```mermaid
+sequenceDiagram
+    participant User
+    participant Frontend
+    participant Backend
+    participant MongoDB
 
-## Project Structure
+    User->>Frontend: Enter credentials
+    Frontend->>Backend: POST /api/auth/login
+    Backend->>MongoDB: Find user & verify password
+    MongoDB-->>Backend: User data
+    Backend-->>Frontend: JWT token + user info
+    Frontend->>Frontend: Store token in localStorage
+    Frontend->>Backend: API requests with token
+    Backend->>Backend: Verify JWT token
+    Backend-->>Frontend: Protected data
+```
+
+1. User submits login credentials
+2. Backend validates and returns JWT token
+3. Token stored in browser localStorage
+4. All API requests include token in Authorization header
+5. Backend middleware verifies token
+6. Protected routes accessible with valid token
+
+## 🔒 Security Features
+
+- ✅ **Password Hashing**: bcrypt with salt rounds
+- ✅ **JWT Authentication**: Stateless token-based auth
+- ✅ **Protected Routes**: Backend middleware verification
+- ✅ **Frontend Guards**: Route protection with redirects
+- ✅ **Secure Headers**: Authorization Bearer tokens
+- ✅ **Input Validation**: Server-side validation
+
+## 📁 Project Structure
 
 ```
 project/
 ├── backend/
 │   ├── src/
 │   │   ├── config/
-│   │   │   └── db.ts
+│   │   │   └── db.ts                 # MongoDB connection
 │   │   ├── controllers/
+│   │   │   ├── authController.ts     # Authentication logic
 │   │   │   ├── userController.ts
 │   │   │   ├── categoryController.ts
 │   │   │   ├── productController.ts
 │   │   │   ├── orderController.ts
 │   │   │   └── dashboardController.ts
+│   │   ├── middleware/
+│   │   │   └── auth.ts               # JWT verification
 │   │   ├── models/
 │   │   │   ├── user.ts
 │   │   │   ├── category.ts
 │   │   │   ├── product.ts
 │   │   │   └── order.ts
 │   │   ├── routes/
+│   │   │   ├── authRoutes.ts
 │   │   │   ├── userRoutes.ts
 │   │   │   ├── categoryRoutes.ts
 │   │   │   ├── productRoutes.ts
 │   │   │   ├── orderRoutes.ts
 │   │   │   └── dashboardRoutes.ts
-│   │   ├── app.ts
-│   │   └── server.ts
+│   │   ├── scripts/
+│   │   │   └── createAdmin.ts        # Admin creation script
+│   │   ├── app.ts                    # Express app setup
+│   │   └── server.ts                 # Server entry point
 │   ├── package.json
 │   └── tsconfig.json
 ├── frontend/
 │   ├── src/
 │   │   ├── api/
-│   │   │   └── api.ts
+│   │   │   └── api.ts                # API client
+│   │   ├── context/
+│   │   │   └── AuthContext.tsx       # Auth state management
 │   │   ├── pages/
+│   │   │   ├── Login.tsx
 │   │   │   ├── Dashboard.tsx
 │   │   │   ├── Users.tsx
 │   │   │   ├── Categories.tsx
 │   │   │   ├── Products.tsx
 │   │   │   └── Orders.tsx
-│   │   ├── App.tsx
-│   │   ├── App.css
+│   │   ├── App.tsx                   # Main app component
+│   │   ├── App.css                   # Styles
 │   │   ├── index.css
-│   │   └── main.tsx
+│   │   └── main.tsx                  # Entry point
 │   ├── package.json
 │   └── vite.config.ts
-├── .env
+├── .env                              # Environment variables
 └── README.md
 ```
 
-## Usage Guide
+## 🏗️ Building for Production
 
-### 1. Creating Categories
-First, create some categories as they are needed for products:
-1. Navigate to "Categories" in the sidebar
-2. Fill in the category name and description
-3. Click "Add" to create the category
+### Frontend Production Build
 
-### 2. Adding Products
-After creating categories:
-1. Navigate to "Products"
-2. Fill in product details and select a category
-3. Set the price and status
-4. Click "Add" to create the product
-
-### 3. Creating Users
-1. Navigate to "Users"
-2. Enter name, email, and mobile number
-3. Click "Add" to create the user
-
-### 4. Creating Orders
-1. Navigate to "Orders"
-2. Select a user from the dropdown
-3. Add products by selecting them and specifying quantity
-4. Review the total amount
-5. Click "Create Order"
-
-### 5. Viewing Dashboard
-The dashboard displays real-time statistics including:
-- Total users count
-- Total products count
-- Total orders count
-- Total revenue
-
-## Building for Production
-
-### Frontend Build
 ```bash
 cd frontend
 npm run build
 ```
 
-The production build will be created in `frontend/dist/`
+Output: `frontend/dist/`
 
-### Backend Build
+To preview the build:
+```bash
+npm run preview
+```
+
+### Backend Production Build
+
 ```bash
 cd backend
 npx tsc
 ```
 
-## Environment Variables
+Output: `backend/dist/`
 
-The application uses a `.env` file in the root directory:
-
-```env
-MONGO_URI=mongodb://localhost:27017/food-delivery-admin
+To run production build:
+```bash
+node dist/server.js
 ```
 
-## Features Implemented
-
-- ✅ Complete CRUD operations for all entities
-- ✅ MongoDB Aggregation Pipeline for dashboard
-- ✅ Population of references (Category in Products, User and Products in Orders)
-- ✅ Form validation and error handling
-- ✅ Responsive UI with modern design
-- ✅ Real-time data updates
-- ✅ Clean code structure and organization
-- ✅ TypeScript for type safety
-- ✅ RESTful API design
-
-## Troubleshooting
+## 🐛 Troubleshooting
 
 ### MongoDB Connection Issues
-If you see "MongoDB connection failed":
-- Ensure MongoDB is running: `mongod`
-- Check if port 27017 is available
-- Verify the MONGO_URI in `.env` file
+
+**Problem**: "MongoDB connection failed"
+
+**Solutions**:
+- Verify MongoDB is running: `mongod`
+- Check port 27017 availability: `lsof -i :27017`
+- Verify MONGO_URI in `.env`
+- Check MongoDB logs for errors
+
+### Authentication Issues
+
+**Problem**: Login fails or keeps redirecting
+
+**Solutions**:
+- Verify admin user exists: `npm run create-admin`
+- Check JWT_SECRET is set in `.env`
+- Clear browser localStorage
+- Check browser console for errors
+- Verify backend logs for authentication errors
 
 ### Port Already in Use
-If port 3000 or 5173 is already in use:
-- Change the port in backend server.ts
-- Update the API_BASE in frontend/src/api/api.ts
+
+**Problem**: "Port 5000/5173 is already in use"
+
+**Solutions**:
+
+Backend:
+```bash
+# Change PORT in .env
+PORT=5001
+```
+
+Frontend:
+```bash
+# Update vite.config.ts
+export default defineConfig({
+  plugins: [react()],
+  server: { port: 5174 }
+})
+```
+
+Don't forget to update API_BASE in:
+- `frontend/src/api/api.ts`
+- `frontend/src/context/AuthContext.tsx`
 
 ### CORS Issues
-The backend is configured to accept requests from any origin. If you face CORS issues:
-- Ensure the backend is running
-- Check the CORS configuration in backend/src/app.ts
 
-## License
+**Problem**: CORS policy blocking requests
 
-MIT
+**Solutions**:
+- Ensure backend is running
+- Check CORS config in `backend/src/app.ts`
+- Verify frontend is making requests to correct URL
+- Check browser console for specific CORS errors
 
-## Author
+### TypeScript Errors
 
-Created as a Food Delivery Admin Panel assignment
+**Problem**: TypeScript compilation errors
+
+**Solutions**:
+```bash
+# Clear node_modules and reinstall
+rm -rf node_modules package-lock.json
+npm install
+
+# Check TypeScript version
+npx tsc --version
+```
+
+## 🧪 Testing
+
+### Manual Testing Checklist
+
+- [ ] Admin login works
+- [ ] Dashboard displays statistics
+- [ ] Can create/read/update/delete users
+- [ ] Can create/read/update/delete categories
+- [ ] Can create/read/update/delete products
+- [ ] Can create orders with multiple items
+- [ ] Order total calculates correctly
+- [ ] Protected routes redirect to login when not authenticated
+- [ ] Logout clears session
+- [ ] All forms validate inputs
+
+## 🚦 Environment Variables Reference
+
+| Variable | Description | Default | Required |
+|----------|-------------|---------|----------|
+| `MONGO_URI` | MongoDB connection string | `mongodb://localhost:27017/food-delivery-admin` | ✅ |
+| `JWT_SECRET` | Secret for JWT signing | - | ✅ |
+| `PORT` | Backend server port | `5000` | ❌ |
+| `ADMIN_NAME` | Admin user name | `Admin` | ⚠️ |
+| `ADMIN_EMAIL` | Admin email | `admin@example.com` | ⚠️ |
+| `ADMIN_MOBILE` | Admin mobile | `1234567890` | ⚠️ |
+| `ADMIN_PASSWORD` | Admin password | `admin123` | ⚠️ |
+
+⚠️ = Required for `create-admin` script only

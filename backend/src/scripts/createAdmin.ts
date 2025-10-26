@@ -13,9 +13,11 @@ const createAdmin = async () => {
     const mobile = process.env.ADMIN_MOBILE || "1234567890";
     const password = process.env.ADMIN_PASSWORD || "admin123";
 
-    const existingUser = await User.findOne({ email });
+    const existingUser = await User.findOne({ $or: [{ email }, { mobile }] });
     if (existingUser) {
-      console.log("❌ Admin user already exists with this email:", email);
+      console.log(
+        "❌ Admin user already exists with this email or mobile number."
+      );
       process.exit(1);
     }
 
