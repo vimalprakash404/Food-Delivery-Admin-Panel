@@ -5,7 +5,7 @@ import { Order } from "../models/order";
 
 export const getDashboardStats = async (req: Request, res: Response) => {
   try {
-    const totalUsers = await User.countDocuments();
+    const totalUsers = await User.countDocuments({ role: { $ne: "admin" } });
     const totalProducts = await Product.countDocuments();
     const totalOrders = await Order.countDocuments();
 
