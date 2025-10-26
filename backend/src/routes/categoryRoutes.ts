@@ -5,12 +5,18 @@ import {
   updateCategory,
   deleteCategory,
 } from "../controllers/categoryController";
+import {
+  createCategoryValidator,
+  updateCategoryValidator,
+  deleteCategoryValidator,
+} from "../validators/categoryValidator";
+import { validate } from "../middleware/validation";
 
 const router = express.Router();
 
 router.get("/", getCategories);
-router.post("/", createCategory);
-router.put("/:id", updateCategory);
-router.delete("/:id", deleteCategory);
+router.post("/", createCategoryValidator, validate, createCategory);
+router.put("/:id", updateCategoryValidator, validate, updateCategory);
+router.delete("/:id", deleteCategoryValidator, validate, deleteCategory);
 
 export default router;
