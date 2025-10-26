@@ -323,23 +323,7 @@ Test all API endpoints using our Postman collection:
 
 ## 🔐 Authentication Flow
 
-```mermaid
-sequenceDiagram
-    participant User
-    participant Frontend
-    participant Backend
-    participant MongoDB
 
-    User->>Frontend: Enter credentials
-    Frontend->>Backend: POST /api/auth/login
-    Backend->>MongoDB: Find user & verify password
-    MongoDB-->>Backend: User data
-    Backend-->>Frontend: JWT token + user info
-    Frontend->>Frontend: Store token in localStorage
-    Frontend->>Backend: API requests with token
-    Backend->>Backend: Verify JWT token
-    Backend-->>Frontend: Protected data
-```
 
 1. User submits login credentials
 2. Backend validates and returns JWT token
